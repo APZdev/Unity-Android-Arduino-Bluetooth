@@ -1,0 +1,3 @@
+Don't call the ConnectPairedDevice more than once -> it doesn't work otherwise
+
+Reconnect on the search device tab when onRseume is called; even if we disconnected before

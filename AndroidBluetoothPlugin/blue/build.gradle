@@ -1,0 +1,59 @@
+plugins {
+    id 'com.android.library'
+}
+
+android {
+    compileSdkVersion 30
+    buildToolsVersion "30.0.3"
+
+    defaultConfig {
+        minSdkVersion 16
+        targetSdkVersion 30
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    afterEvaluate {
+        assembleDebug.finalizedBy(exportJar)
+    }
+}
+
+dependencies {
+
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'com.google.android.material:material:1.2.1'
+    testImplementation 'junit:junit:4.13.1'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    //noinspection GradleCompatible
+    implementation "com.android.support:support-compat:28.0.0"
+    implementation files('F:\\Program Files\\Unity\\Hub\\Editor\\2019.2.13f1\\Editor\\Data\\PlaybackEngines\\AndroidPlayer\\Variations\\mono\\Release\\Classes\\classes.jar')
+}
+
+task exportJar(type: Copy) {
+    from('F:\\Users\\pompo\\Desktop\\Bazar\\Creations\\Developement\\Bluetooth\\BluetoothPlugin\\blue\\build\\intermediates\\aar_main_jar\\release\\classes.jar')
+    include('classes.jar')
+    into('F:/Users\\pompo\\Documents\\UnityProjects\\Bluetooth\\Assets\\Plugins\\Android\\bin')
+    rename('classes.jar', 'blue.jar')
+}
+
+task deleteOldJar(type: Delete) {
+    delete 'F:\\Users\\pompo\\Documents\\UnityProjects\\Bluetooth\\Assets\\Plugins\\Android\\bin\\blue.jar'
+}
+
+exportJar.dependsOn(deleteOldJar)

@@ -1,0 +1,15 @@
+Display weight according to the force sensor
+
+Unlock the app using a password (that can be changed) or biometric login
+
+Display the battery remaining in percentage
+
+Login Automatic -> sur choix -> checkbox
+
+Theme changer -> Color based on constants (Changing color componnent's color is somehow broken)
+
+Email recovery through email or questions
+
+Save using .json file -> No Player prefs
+
+Notification when under 20% battery left
